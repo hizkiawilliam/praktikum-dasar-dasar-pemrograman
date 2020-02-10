@@ -1,0 +1,18 @@
+key1 = int(input("Masukkan Key 1 : "))
+key2 = int(input("Masukkan Key 2 : "))
+pesanrahasia = input("Masukkan Pesan : ")
+
+pesan = ""
+for i in pesanrahasia:
+	if(ord(i)-key2 < ord('a')):
+		pesan += chr(ord(i)-key2+26)
+	else:
+		pesan += chr(ord(i)-key2)
+
+pesanasli = ""
+for i in range(0,len(pesan),key1):
+	potong = pesan[i:i+key1]
+	balik = potong[::-1]
+	pesanasli += balik
+
+print("Pesan asli : " + pesanasli)

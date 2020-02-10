@@ -1,0 +1,88 @@
+# DAERAH TERLARANG UNTUK DIMODIFIKASI
+
+import os
+import sys
+relative_path = 'data/'
+
+# Bagian bawah ini sama seperti membaca file dengan open(file,r) tapi ini khusus untuk relative path
+# Akan dijelaskan di bab berikutnya
+# Untuk sekarang tidak perlu dipikirkan karena file ini tidak perlu dimodifikasi
+
+try:
+    masukan = open(os.path.join(os.path.dirname(__file__),relative_path,\
+              'input.in'),'r')
+    price_data =   open(os.path.join(os.path.dirname(__file__),relative_path,\
+              'pricelist.in'),'r')
+except FileNotFoundError:
+    print("File tidak ditemukan ! Hayo Jangan Modifikasi Ya")
+
+# -------------------------------------------------------------------------------------- #
+# DAERAH DI BAWAH INI BUKAN DAERAH TERLARANG
+
+# Keyword "pass" mengartikan fungsi tersebut dilewat/diabaikan untuk dibaca
+# Untuk melengkapi program, hapus kata "pass" dan lengkapi dengan rancangan kode dari Anda
+
+sold_items = {} # Membuat dictionary baru yang akan diisi oleh KEY nya adalah JENIS PRODUK, dan VALUE nya adalah LIST/SET dari para pembeli produk itu
+
+def printCashier(): # Silakan langkapi jika ingin mengerjakan bonus
+    price_list = {}
+    money_total = 0
+
+    for line in price_data:
+        (product,price) = line.split()
+        price_list[product] = int(price)
+
+    for i in sold_items:
+        money_total += (price_list[i] * len(sold_items[i]))
+        print(i + " : " + str(price_list[i] * len(sold_items[i])))
+    print("Total uang didapatkan : " + str(money_total))
+
+def main(): # Hanya udah bagian dalam ini saja jika tidak mengerjakan bonus
+    for line in masukan: # Variabel "masukan" dibaca dari Build.py
+        input_splitted = line.split()
+
+        if input_splitted[0] == "TAMBAH":
+            # TODO:
+            # Lengkapi dengan membuat sebuah set untuk menampung nama pembeli di atas
+            # masukkan ke dictionary yang di awal telah dibuat
+            item_name = input_splitted[1]
+            buyer_name = input_splitted[2:]
+
+            sold_items[item_name] = buyer_name
+            print(item_name + " berhasil ditambahkan!")
+        
+        # TODO:
+        # Manfaatkan method yang dimiliki oleh set (baca materi) untuk melengkapirangkaian operasi di bawah
+        elif input_splitted[0] == "GABUNG":
+            item_1 = set(sold_items[input_splitted[1]])
+            item_2 = set(sold_items[input_splitted[2]])
+            print("{" + ', '.join(item_1 | item_2) + "}")
+            
+        elif input_splitted[0] == "PEMBELI":
+            item_1 = set(sold_items[input_splitted[1]])
+            item_2 = set(sold_items[input_splitted[2]])
+            print("{" + ', '.join(item_1 & item_2) + "}")
+
+        elif input_splitted[0] == "HANYA":
+            item_1 = set(sold_items[input_splitted[1]])
+            item_2 = set(sold_items[input_splitted[2]])
+            print("{" + ', '.join(item_1 - item_2) + "}")
+
+        elif input_splitted[0] == "CETAK":
+            if input_splitted[1] == "SEMUA":
+                for item in sold_items:
+                    set_to_str = ', '.join(sold_items[item])
+                    print(item + " : {" + set_to_str + "}")
+
+            elif input_splitted[1] == "KEUANGAN":  #printCashier() berada di dalam Pricing.py , abaikan jika tidak ingin mengerjakan bonus
+                return printCashier()                    
+            else:
+                item_name = input_splitted[1]
+                set_to_str = ', '.join(sold_items[item_name])
+                print(item_name + " : {" + set_to_str + "}")
+        
+        elif input_splitted[0] == "KELUAR":
+            print("Program Berhenti! Terima Kasih Telah Menggunakan!")
+        else:
+            print("Perintah Salah!")
+main()

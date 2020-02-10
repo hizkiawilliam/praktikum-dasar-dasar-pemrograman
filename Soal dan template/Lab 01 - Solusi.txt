@@ -1,0 +1,27 @@
+import turtle
+
+#Meminta input panjang sisi
+PanjangSisi = int(input())
+
+#Membuat objek turtle
+t = turtle.Turtle()
+
+#Mengatur warna isian segitiga
+t.fillcolor("blue")
+
+#Mulai mewarnai
+t.begin_fill()
+
+#Mulai menggambar sisi
+t.pendown()
+t.pencolor("red")
+t.forward(PanjangSisi)
+t.left(120)
+t.pencolor("yellow")
+t.forward(PanjangSisi)
+t.left(120)
+t.pencolor("green")
+t.forward(PanjangSisi)
+
+#Akhir mewarnai
+t.end_fill()

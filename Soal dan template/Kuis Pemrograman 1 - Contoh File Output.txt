@@ -1,0 +1,23 @@
+Nama Dipsi telah terdaftar dengan paket Pelajar
+Nama Gagah telah terdaftar dengan paket Regular
+Maaf, Saldo Anda melebihi kapasitas!
+Nama Ano telah terdaftar dengan paket Elit
+Berhasil menarik sebesar 100000
+Akun telah bertambah sebesar 100000
+Dipsi 0
+Gagah 250000
+Ano 800000
+BANK Mendapat Keuntungan sebesar 200000
+Transaksi gagal! Saldo tidak cukup!
+Berhasil menarik sebesar 200000
+Dipsi 0
+Gagah 50000
+Ano 800000
+Berhasil transfer sebesar 100000 kepada Dipsi
+Berhasil transfer sebesar 200000 kepada Gagah
+Akun telah bertambah sebesar 800000
+Dipsi 100000
+Gagah 250000
+Ano 1000000
+BANK Mendapat Keuntungan sebesar 700000
+Terima Kasih Telah Menggunakan!

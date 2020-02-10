@@ -1,0 +1,21 @@
+nama_pria = input("Nama: ")
+a = float(input("Tingkat kejujuran " + nama_pria + ": "))
+b = float(input("Tingkat kecerdasan " + nama_pria + ": "))
+c = float(input("Tingkat kemapanan " + nama_pria + ": "))
+d = float(input("Tingkat keberuntungan " + nama_pria + ": "))
+p = (3*a)+(3*b)+(2.5*c)+(1.5*d)
+q = 0.125 / 2 * (a+b+c+d)**2
+check_p = False
+if (p >= 85 and p <= 95):
+  check_p = True
+check_q = False
+if q >= 45:
+  check_q = True
+print("Nilai P", nama_pria, "adalah", round(p,2))
+print("Nilai Q", nama_pria, "adalah", round(q,2))
+if check_p and check_q:
+    print(nama_pria + " lolos standar calon suami Loly dan Lily")
+elif check_q:
+    print(nama_pria + " lolos standar calon suami Lily")
+else:
+    print(nama_pria + " tidak lolos standar siapapun :(")

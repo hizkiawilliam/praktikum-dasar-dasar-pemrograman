@@ -1,0 +1,35 @@
+# Tidak wajib menggunakan template ini
+# Template ini boleh dimodifikasi
+
+class servant:
+    def __init__(self, nama, tipe, power):
+        # Todo buatlah konstruktor untuk membuat objek Servant
+
+    def train(self):
+        # Implementasikan method Train
+    
+    def battle(self, enemy):
+        # Implementasikan method Battle
+        
+    def serangan(self):
+        # Method serangan untuk menghitung kekuatan serangan
+
+    def heal(self):
+        # Implementasikan method heal
+
+    def stats(self):
+        # Implementasikan method stats
+
+# Dictionary untuk menyimpan objek Servant
+daftar_servant = {}
+
+# List daftar tipe Servant
+tipe_servant = ["Saber","Lancer","Archer","Caster","Assassin","Rider","Berserker"]
+
+# List daftar perintah yang valid
+daftar_perintah = ["SUMMON","TRAIN","BATTLE","HEAL","STATS"]
+
+while True:
+    perintah = input().split()
+
+    # Implementasikan Main Program disini

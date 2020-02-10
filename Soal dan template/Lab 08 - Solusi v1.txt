@@ -1,0 +1,24 @@
+def reverseString(s):
+    return (s if len(s) == 1 else (s[-1] + reverseString(s[:-1])))
+
+
+def count_existence(x, lst):
+    return (0 if len(lst) == 0 else ((1 if x == lst[0] else 0) + count_existence(x,lst[1:])))
+
+def menu_reverse_string():
+    print("Masukkan sebuah string")
+    s = input()
+    print("{} dibalik menjadi {}".format(s, reverseString(s)))
+
+def menu_count_existence():
+    print("Masukan sebuah angka")
+    x = int(input())
+    print("Masukan kumpulan angka yang akan dimasukkan ke dalam list")
+    lst = [int(x) for x in input().split()]
+    print("Jumlah angka {} pada list tersebut adalah {}".format(x, count_existence(x, lst)))
+    
+
+print("Mau pilih nomor berapa? [1 atau 2]")
+print("1] Reverse String")
+print("2] Count Existence")
+menu_reverse_string() if int(input()) == 1 else menu_count_existence()

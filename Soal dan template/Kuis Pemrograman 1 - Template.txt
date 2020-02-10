@@ -1,0 +1,24 @@
+class Bank:
+    def __init__(self, nama, jenis_tabungan, saldo_awal):
+        # Method untuk mendaftarkan akun BenCoin
+
+    def setor(self, uang):
+        # Method untuk penyetoran
+
+    def tarik(self, bc, currency):
+        #Method untuk Penarikan
+        
+    def transfer(self, penerima, uang):
+        # Method untuk transfer uang
+
+    def infoSemua(self):
+        # Method untuk mencetak semua nama nasabah dan saldonya
+
+    def infoUang(self):
+        # Method untuk mencetak total keuntungan bank
+
+# Dictionary untuk menyimpan objek nasabah berdasarkan namanya
+list_nasabah = {}
+
+# Main Program
+# Implementasikan di bawah sini

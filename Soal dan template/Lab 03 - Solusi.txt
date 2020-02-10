@@ -1,0 +1,58 @@
+key = input("Masukkan kode mentah: ")
+lokasi = input("Masukkan nama lokasi: ")
+angka = int(input("Masukkan biner: "))
+
+# Memproses Input Pertama dan Kedua
+
+if 1 <= len(key) <= 5:
+    key = "Anja5"
+
+elif 6 <= len(key) <= 10:
+    if lokasi == "bukit":
+        key = "y3KAl1"
+    elif lokasi == "matahari":
+        key = "AkUK4mU"
+    else:
+        key = "c4p3DEh"
+
+elif 11 <= len(key) <=15:
+    if lokasi == "mikrofon":
+        key = "g46Un4"
+    else:
+        key = "54nsAE"
+
+elif 16 <= len(key) <= 20:
+    if lokasi == "taman":
+        key = "k3P0"
+    else:
+        key = "s3L0W"
+
+elif 20<= len(key) <= 100:
+    if lokasi == "dapur":
+        key = "s04L1niEZ"
+    else:
+        key = "C4b5kUy"
+
+else:
+    key = "x00000x"
+    
+# -------------------------------- #
+
+# Memproses Input Ketiga 
+
+pangkat = len(str(angka))-1
+konversi = 0
+for isi in (str(angka)):
+    konversi += int(isi)*(2**pangkat)
+    pangkat -= 1
+# -------------------------------- #
+
+print("========= Dipsi LIVE Hack ==========")
+print("============ SANDI DATA ============")
+print("Kode awal sandi: " + key)
+print("Hasil konversi desimal: " + str(konversi))
+print("Hasil akhir: " + '///' + key + '///' + str(konversi) + '///')
+print("=====================================")
+print("Sandi berhasil diterjemahkan !")
+print("Pencuri akan segera ditangkap !")
+print("=====================================")

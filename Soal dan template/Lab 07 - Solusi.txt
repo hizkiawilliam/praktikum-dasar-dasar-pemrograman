@@ -1,0 +1,130 @@
+class servant:
+
+    # Method untuk inisiasi objek servant
+    def __init__(self, nama, tipe, power):
+        self.nama = nama
+        self.tipe = tipe
+        self.power = power
+        self.level = 1
+        self.health = True
+        print("Berhasil memanggil Servant dengan nama {} dan tipe {}".format(self.nama, self.tipe))
+
+    # Method untuk training servant
+    def train(self):
+        self.power += 0.1 * self.power
+        print("{} berlatih keras dan kekuatannya meningkat menjadi {}".format(self.nama, self.power))
+    
+    # Method untuk Battle
+    def battle(self, enemy):
+        # Cek apakah Servant terluka atau tidak
+        if(not self.health or not enemy.health):
+            print("Servant yang akan bertarung sedang terluka")
+            return
+        
+        # Kondisi ketika Servant 1 menang
+        if(self.serangan() > enemy.serangan()):
+            print("{} menang dalam pertarungan dan {} menjadi terluka. Selisih kekuatan mereka adalah {}".format(self.nama, enemy.nama, self.serangan()-enemy.serangan()))
+            self.level += 1
+            enemy.health = False
+
+        # Kondisi ketika Servant 2 mennag
+        elif(enemy.serangan() > self.serangan()):
+            print("{} menang dalam pertarungan dan {} menjadi terluka. Selisih kekuatan mereka adalah {}".format(enemy.nama, self.nama, enemy.serangan()-self.serangan()))
+            enemy.level += 1
+            self.health = False
+
+        # Kondisi ketika seri
+        else:
+            print("{} dan {} dalam pertarungan sengit yang berakhir seri. Keduanya menjadi terluka.".format(self.nama, enemy.nama))
+            self.health = False
+            enemy.health = False
+
+    # Method untuk healing Servant
+    def heal(self):
+        # Cek jika Servant masih sehat atau sudah terluka
+        if(self.health):
+            print("Servant {} keadaannya masih sehat.".format(self.nama))
+        else:
+            self.health = True
+            print("Servant {} berhasil dipulihkan dan kembali sehat".format(self.nama))
+
+    # Method untuk mencetak stats Servant
+    def stats(self):
+        print("Nama : {}".format(self.nama))
+        print("Tipe : {}".format(self.tipe))
+        print("Power : {}".format(self.power))
+        print("Level : {}".format(self.level))
+        print("Status : {}".format("Sehat" if self.health else "Terluka"))
+
+# Membuat sub-class knight, cavalry, dan berserker yang method serangannya berbeda-beda
+class knight(servant):
+    def serangan(self):
+        return 0.25 * self.power + 10 * self.level
+
+class cavalry(servant):
+    def serangan(self):
+        return 0.15 * self.power + 20 * self.level
+
+class berserker(servant):
+    def serangan(self):
+        return 0.5 * self.power + 5 * self.level
+
+# Dictionary untuk menyimpan objek Servant
+daftar_servant = {}
+
+# List berisi Tipe Servant yang valid
+tipe_servant = ["Saber","Lancer","Archer","Caster","Assassin","Rider","Berserker"]
+
+# List berisi daftar perintah yang valid
+daftar_perintah = ["SUMMON","TRAIN","BATTLE","HEAL","STATS"]
+
+# Main Program
+while True:
+    perintah = input().split()
+
+    # Cek apakah perintah valid atau tidak
+    if perintah[0] not in daftar_perintah:
+        print("Perintah tidak valid")
+
+    # Jika perintah valid
+    else:
+
+        # Menjalankan perintah SUMMON dan membuat objek servant
+        if perintah[0] == "SUMMON":
+
+            # Cek apakah nama servant sudah ada di dictionary
+            # Cek apakah tipe servant valid
+            # Cek apakah power bernilai positif
+            if(perintah[1] in daftar_servant or perintah[2] not in tipe_servant or int(perintah[3]) <= 0):
+                print("Tidak bisa memanggil Servant karena kesalahan")
+
+            # Jika valid, buat objek Servant dan disimpan di dalam dictionary dengan key berupa nama Servant
+            # Membuat objek Servant sesuai sub-class nya
+            elif(perintah[2] == "Saber" or perintah[2] == "Lancer" or perintah[2] == "Archer"):
+                daftar_servant[perintah[1]] = knight(perintah[1], perintah[2], int(perintah[3]))
+
+            elif(perintah[2] == "Caster" or perintah[2] == "Assassin" or perintah[2] == "Rider"):
+                daftar_servant[perintah[1]] = cavalry(perintah[1], perintah[2], int(perintah[3]))
+                
+            else:
+                daftar_servant[perintah[1]] = berserker(perintah[1], perintah[2], int(perintah[3]))
+        
+        # Menjalankan perintah TRAIN sekaligus mengecek nama Servant di dictionary
+        elif perintah[0] == "TRAIN" and perintah[1] in daftar_servant:
+            daftar_servant[perintah[1]].train()
+
+        # Menjalankan perintah BATTLE sekaligus mengecek nama Servant di dictionary
+        elif perintah[0] == "BATTLE" and perintah[1] in daftar_servant and perintah[2] in daftar_servant:
+            daftar_servant[perintah[1]].battle(daftar_servant[perintah[2]])
+        
+        # Menjalankan perintah HEAL sekaligus mengecek nama Servant di dictionary
+        elif perintah[0] == "HEAL" and perintah[1] in daftar_servant:
+            daftar_servant[perintah[1]].heal()
+
+        # Menjalankan perintah STATS sekaligus mengecek nama Servant di dictionary
+        elif perintah[0] == "STATS" and perintah[1] in daftar_servant:
+            daftar_servant[perintah[1]].stats()
+            
+        #Kondisi jika nama servant tidak ada
+        else:
+            print("Nama Servant tidak ada")

@@ -1,0 +1,50 @@
+# Fungsi rekursif untuk reverse string
+def reverseString(s):
+    # Jika panjang string hanya 1, maka kembalikan dirinya sendiri
+    if len(s) == 1:
+        return s
+
+    # Mengambil huruf paling terakhir dan concat dengan fungsi reverse string
+    else:
+        return s[-1] + reverseString(s[:-1])
+
+# Fungsi rekursif untuk count existence
+def count_existence(x, lst):
+    # Jika list kosong, maka kembalikan nilai nol
+    if len(lst) == 0:
+        return 0
+
+    # Menambahkan 1 jika ada elemen list yang sama
+    elif x == lst[0]:
+        return 1 + count_existence(x,lst[1:])
+
+    # Menambahkan 0 jika elemen list berbeda
+    else:
+        return 0 + count_existence(x,lst[1:])
+
+print("Mau pilih nomor berapa? [1 atau 2]")
+print("1] Reverse String")
+print("2] Count Existence")
+
+inp = int(input())
+
+# Untuk menu revese string
+if inp == 1:
+    print("Masukkan sebuah string")
+    s = input()
+    hasil = reverseString(s)
+    print(s + " dibalik menjadi " + hasil)
+
+# Untuk menu count existence
+else:
+    print("Masukan sebuah angka")
+    x = int(input())
+    print("Masukan kumpulan angka yang akan dimasukkan ke dalam list")
+
+    # Membuat list of integer dari input
+    lst = input().split()
+    for i in range(len(lst)):
+        lst[i] = int(lst[i])
+    
+    hasil = count_existence(x, lst)
+    print("Jumlah angka " + str(x) + " pada list tersebut adalah " + str(hasil))
